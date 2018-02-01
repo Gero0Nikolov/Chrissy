@@ -17,7 +17,7 @@ jQuery( document ).ready( function(){
 			"Show actions",
 			"Hide",
 			"Show",
-			"Clean"
+			"Clean up"
 		];
 
 
@@ -35,7 +35,7 @@ jQuery( document ).ready( function(){
 			"stop",
 			"go to",
 			"show actions",
-			"clean",
+			"clean up",
 			"hide",
 			"show"
 		];
@@ -74,15 +74,20 @@ jQuery( document ).ready( function(){
 		<div id='chrissy-ui'>\
 			<div class='header'>Chrissy <span class='eye' style='background-image: url("+ window.location.origin +"/wp-content/plugins/chrissy/assets/images/eye-sprite.svg);'></span></div>\
 			<div id='response-box'>\
-				<div class='example'>Try \"Show actions\"!</div>\
+				<div class='example'>Try to say \"Show actions\"!</div>\
 			</div>\
 		</div>\
 		";
 		jQuery( "body" ).append( chrissy_ui );
-		setTimeout( function(){ jQuery( "#chrissy-ui" ).addClass( "show-chrissy" ); }, 250 );
+		if ( localStorage.getItem( "chrissy_status" ) == "visible" || localStorage.getItem( "chrissy_status" ) == null ) { setTimeout( function(){ jQuery( "#chrissy-ui" ).addClass( "show-chrissy" ); }, 250 ); }
+		else { jQuery( "#chrissy-ui #response-box" ).hide(); }
 
 		jQuery( "#chrissy-ui" ).on( "click", function( e ){
 			jQuery( this ).toggleClass( "show-chrissy" );
+			jQuery( this ).find( "#response-box" ).toggle();
+
+			if ( jQuery( this ).hasClass( "show-chrissy" ) ) { localStorage.setItem( "chrissy_status", "visible" ); }
+			else { localStorage.setItem( "chrissy_status", "hidden" ); }
 		} );
 
 		// Start the recognition
@@ -97,10 +102,12 @@ jQuery( document ).ready( function(){
 			if ( command == "hide" ) {
 				jQuery( "#chrissy-ui #response-box" ).hide();
 				jQuery( "#chrissy-ui" ).removeClass( "show-chrissy" );
+				localStorage.setItem( "chrissy_status", "hidden" );
 			}
 			else if ( command == "show" ) {
 				jQuery( "#chrissy-ui" ).addClass( "show-chrissy" );
 				jQuery( "#chrissy-ui #response-box" ).show();
+				localStorage.setItem( "chrissy_status", "visible" );
 			}
 			else if ( command == "show actions" ) {
 				jQuery( "#chrissy-ui #response-box" ).empty();
@@ -108,8 +115,8 @@ jQuery( document ).ready( function(){
 					jQuery( "#chrissy-ui #response-box" ).append( "<div>"+ parseInt( i + 1 ) +") "+ cmds[ i ] +"</div>" );
 				}
 			}
-			else if ( command == "clean" ) {
-				jQuery( "#chrissy-ui #response-box" ).html( "<div class='example'>Try \"Show actions\"!</div>" );
+			else if ( command == "clean up" ) {
+				jQuery( "#chrissy-ui #response-box" ).html( "<div class='example'>Try to say \"Show actions\"!</div>" );
 			}
 			else if ( command == "hello chrissy" ) {
 				jQuery( "#chrissy-ui #response-box" ).html( "Hello there! :)" );
@@ -172,6 +179,6 @@ jQuery( document ).ready( function(){
 
 		recognition.onend = function( event ){
 			if ( event.isTrusted && !stop ) { recognition.start(); }
-		}		
+		}
 	}
 } );
