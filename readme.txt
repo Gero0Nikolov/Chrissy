@@ -1,4 +1,4 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: geronikolov
 Donate link: http://geronikolov.com
 Tags: navigation, speech recognition, dictation, dictate, speech nivation, machine learning
@@ -20,11 +20,16 @@ Using the Google Speech Recognition API to catch precisely the User Voice Input,
 
 Of course she knows that not all of the browsers support the Speech Recognition API, so she'll relieve her self only to visitors who are using Chrome and Chrome on Android.
 
-And since Chrissy is one great thing, I would like to tell you that you can join the contribution and make it greater with your ideas using the link from bellow ⬇️
+And since Chrissy is one great thing, I would like to tell you that you can join the contribution and make it greater with your ideas using the links from bellow ⬇️
 
+Try live demo at <a href="https://geronikolov.com">GeroNikolov.com</a> or
 <a href="https://github.com/Gero0Nikolov/checkin" target="_blank">Join the contributions!</a>
 
 == Screenshots ==
+1. Welcome screen
+2. Try "Show actions"
+3. "Hey Chrissy"
+4. Hidden view of Chrissy
 
 == Installation ==
 
