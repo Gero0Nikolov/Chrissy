@@ -6,6 +6,7 @@ jQuery( document ).ready( function(){
 		var cmds = [
 			"Hello Chrissy",
 			"Go to [page]",
+			"Search for [word]",
 			"Reload",
 			"Previous",
 			"Next",
@@ -34,6 +35,7 @@ jQuery( document ).ready( function(){
 			"scroll to bottom",
 			"stop",
 			"go to",
+			"search",
 			"show actions",
 			"clean up",
 			"hide",
@@ -173,7 +175,12 @@ jQuery( document ).ready( function(){
 							 }
 						 }
 					 }
-				 } else { jQuery( "#chrissy-ui #response-box" ).html( "Sorry I didn't get that: \""+ command +"\"" ); }
+				 }
+				 else if ( command.indexOf( "search for" ) > -1 ) {
+					 word = command.split( "search for" )[ 1 ].trim().replace( / /g, "+" ).replace( /and/g, "-" ).toLowerCase();
+					 window.location = window.location.origin +"?s="+ word;
+				 }
+				 else { jQuery( "#chrissy-ui #response-box" ).html( "Sorry I didn't get that: \""+ command +"\"" ); }
 			}
 		}
 
