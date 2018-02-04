@@ -2,7 +2,7 @@
 /*
 Plugin Name: Chrissy
 Description: This plugin will add a speech navigation to the front end of your website.
-Version: 1.0
+Version: 1.1
 Author: GeroNikolov
 Author URI: http://geronikolov.com
 License: GPLv2
