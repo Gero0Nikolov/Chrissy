@@ -1,7 +1,11 @@
 var stop = false;
 
 jQuery( document ).ready( function(){
-	if ( typeof( SpeechRecognition ) != "undefined" || typeof( webkitSpeechRecognition ) != "undefined" ) {
+	if ( 
+		typeof( SpeechRecognition ) != "undefined" || 
+		typeof( webkitSpeechRecognition ) != "undefined" &&
+		!isMobile()
+	) {
 		var website_url = window.location.origin;
 		var cmds = [
 			"Hello Chrissy",
@@ -189,3 +193,8 @@ jQuery( document ).ready( function(){
 		}
 	}
 } );
+
+function isMobile() {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) { return true; }
+    else { return false; }
+}
